@@ -12,6 +12,7 @@ pudb = "*"
 pytest = "*"
 pytest-mock = "*"
 pytest-selenium = "*"
+colorama = "*"
 
 [packages]
 dynaconf = { extras = ["yaml"], version = "*" }
