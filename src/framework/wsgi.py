@@ -55,6 +55,7 @@ def read_from_style_css():
     payload = payload.encode()
     return payload
 
+
 def read_from_logo_png():
     path = DIR_STATIC / "logo.png"
 
