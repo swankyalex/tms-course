@@ -13,10 +13,10 @@ def application(environ, start_response):
 
         yield payload
 
-    elif url == "/logo.png/":
+    elif url == "/image.jpg/":
         status = "200 OK"
         headers = {
-            "Content-type": "image/png",
+            "Content-type": "image/jpeg",
         }
         payload = read_from_logo_png()
         start_response(status, list(headers.items()))
@@ -57,7 +57,7 @@ def read_from_style_css():
 
 
 def read_from_logo_png():
-    path = DIR_STATIC / "logo.png"
+    path = DIR_STATIC / "image.jpg"
 
     with path.open("rb") as fp:
         payload = fp.read()
