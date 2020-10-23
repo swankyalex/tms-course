@@ -18,6 +18,7 @@ colorama = "*"
 dynaconf = { extras = ["yaml"], version = "*" }
 gunicorn = "*"
 psycopg2-binary = "*"
+atomicwrites = "*"
 
 [requires]
 python_version = "3.8"
