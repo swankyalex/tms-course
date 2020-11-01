@@ -1,6 +1,8 @@
 import random
 
 from framework.consts import DIR_STATIC
+from framework.types import RequestT
+from framework.types import ResponseT
 
 
 def read_static(file_name: str) -> bytes:
@@ -12,9 +14,9 @@ def read_static(file_name: str) -> bytes:
     return payload
 
 
-def generate_404(environ) -> tuple:
+def generate_404(request: RequestT) -> ResponseT:
 
-    url = environ["PATH_INFO"]
+    url = request.path
     pin = random.randint(1, 1000)
     msg = f"Hello world! Your path: {url} not found. Pin: {pin}"
 
@@ -23,4 +25,4 @@ def generate_404(environ) -> tuple:
     headers = {
         "Content-type": "text/plain",
     }
-    return status, headers, payload
+    return ResponseT(status, headers, payload)
