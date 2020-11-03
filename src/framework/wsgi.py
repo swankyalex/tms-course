@@ -4,14 +4,18 @@ from framework.types import RequestT
 from framework.utils import generate_404
 from handlers.handle_error import make_error
 from handlers.handle_hello import hello
-from handlers.server_error import generate_500
 from handlers.handle_image import handle_image
 from handlers.handle_index import handle_index
 from handlers.handle_style import handle_style
+from handlers.server_error import generate_500
 
-handlers = {"/xxx/": handle_style, "/image.jpg/": handle_image, "/": handle_index,
-            "/e/": make_error, "/hello/": hello
-            }
+handlers = {
+    "/xxx/": handle_style,
+    "/image.jpg/": handle_image,
+    "/": handle_index,
+    "/e/": make_error,
+    "/hello/": hello,
+}
 
 
 def application(environ: dict, start_response):
@@ -29,7 +33,7 @@ def application(environ: dict, start_response):
             method=environ["REQUEST_METHOD"],
             path=path,
             headers=request_headers,
-            query=parse_qs(environ.get("QUERY_STRING") or "")
+            query=parse_qs(environ.get("QUERY_STRING") or ""),
         )
 
         response = handler(request)

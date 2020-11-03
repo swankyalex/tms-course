@@ -1,6 +1,7 @@
 import traceback
 
-from framework.types import RequestT, ResponseT
+from framework.types import RequestT
+from framework.types import ResponseT
 
 
 def generate_500(_request: RequestT = None) -> ResponseT:

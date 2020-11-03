@@ -1,4 +1,5 @@
-from framework.types import RequestT, ResponseT
+from framework.types import RequestT
+from framework.types import ResponseT
 
 
 def hello(request) -> ResponseT:
