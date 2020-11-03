@@ -20,9 +20,23 @@ def generate_404(request: RequestT) -> ResponseT:
     pin = random.randint(1, 1000)
     msg = f"Hello world! Your path: {url} not found. Pin: {pin}"
 
-    payload = msg.encode()
+    headers_strings = [
+        f'{h} -> {v}'
+        for h,v in request.headers.items()
+    ]
+
+    headers_txt = ""
+    for item in headers_strings:
+        headers_txt = headers_txt + item +"\n"
+
+    document = f'''404! path: {url}, pin{pin}
+
+{headers_txt}
+'''
+
+    payload = document.encode()
     status = "404 Not Found"
-    headers = {
+    headers_strings = {
         "Content-type": "text/plain",
     }
-    return ResponseT(status, headers, payload)
+    return ResponseT(status, headers_strings, payload)

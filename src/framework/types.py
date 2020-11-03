@@ -13,3 +13,4 @@ class RequestT:
     method: str
     path: str
     headers: dict
+    query: dict = None
