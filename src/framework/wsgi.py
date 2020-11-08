@@ -14,7 +14,7 @@ handlers = {
     "/image.jpg/": handle_image,
     "/": handle_index,
     "/e/": make_error,
-    "/hello/": hello,
+    "/h/": hello,
 }
 
 
