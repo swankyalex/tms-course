@@ -1,5 +1,7 @@
 import dataclasses
+from typing import Callable
 from typing import NamedTuple
+from typing import Optional
 
 
 class ResponseT(NamedTuple):
@@ -13,4 +15,15 @@ class RequestT:
     method: str
     path: str
     headers: dict
-    query: dict = None
+    kwargs: Optional[dict] = None
+    query: Optional[dict] = None
+    form_data: Optional[dict] = None
+    body: Optional[bytes] = None
+
+
+HandlerT = Callable[[RequestT], ResponseT]
+
+
+class StaticT(NamedTuple):
+    content: bytes
+    content_type: str

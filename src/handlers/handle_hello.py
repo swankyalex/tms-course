@@ -3,8 +3,8 @@ from framework.utils import read_static
 
 
 def hello(request) -> ResponseT:
-    name = (request.query.get("name") or [None])[0]
-    address = (request.query.get("address") or [None])[0]
+    name = (request.form_data.get("name") or [None])[0]
+    address = (request.form_data.get("address") or [None])[0]
 
     base_html = read_static("_base.html").decode()
     hello_html = read_static("hello.html").decode()
