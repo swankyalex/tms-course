@@ -19,6 +19,7 @@ dynaconf = { extras = ["yaml"], version = "*" }
 gunicorn = "*"
 psycopg2-binary = "*"
 atomicwrites = "*"
+delorean = "*"
 
 [requires]
 python_version = "3.8"

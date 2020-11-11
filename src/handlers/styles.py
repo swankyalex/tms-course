@@ -3,9 +3,9 @@ from framework.types import ResponseT
 from framework.utils import read_static
 
 
-def handle_image(_request: RequestT) -> ResponseT:
-    payload = read_static("image.jpg")
+def handle_styles(_request: RequestT) -> ResponseT:
+    payload = read_static("styles.css")
     status = "200 OK"
-    headers = {"Content-type": "image/jpeg"}
+    headers = {"Content-type": "text/css"}
 
     return ResponseT(status, headers, payload)
