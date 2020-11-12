@@ -1,5 +1,6 @@
 from framework.types import RequestT
 from framework.types import ResponseT
+from framework.utils import build_status
 from framework.utils import read_static
 
 
@@ -10,7 +11,7 @@ def handle_index(_request: RequestT) -> ResponseT:
     result = base_html.format(xxx=index_html)
     result = result.encode()
 
-    status = "200 OK"
+    status = build_status(200)
     headers = {
         "Content-type": "text/html",
     }

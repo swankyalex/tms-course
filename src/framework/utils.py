@@ -1,9 +1,12 @@
+import http
 import random
 from typing import Any
 from typing import Dict
+from typing import Optional
 from urllib.parse import parse_qs
 
 from framework.consts import DIR_STATIC
+from framework.consts import USER_COOKIE
 from framework.types import RequestT
 from framework.types import ResponseT
 
@@ -35,7 +38,7 @@ def generate_404(request: RequestT) -> ResponseT:
 """
 
     payload = document.encode()
-    status = "404 Not Found"
+    status = build_status(404)
     headers_strings = {
         "Content-type": "text/plain",
     }
@@ -58,3 +61,30 @@ def get_body(environ: dict) -> bytes:
     content = fp.read(cl)
 
     return content
+
+
+def build_status(code: int) -> str:
+    status = http.HTTPStatus(code)
+
+    def _process_word(_word: str) -> str:
+        if _word == "OK":
+            return _word
+        return _word.capitalize()
+
+    reason = " ".join(_process_word(word) for word in status.name.split("_"))
+
+    text = f"{code} {reason}"
+    return text
+
+
+def get_user_id(headers: Dict) -> Optional[str]:
+    cookies = parse_qs(headers.get("COOKIE", ""))
+    user_id = cookies.get(USER_COOKIE, [None])[0]
+
+    return user_id
+
+
+def get_request_headers(environ: dict) -> dict:
+    environ_headers = filter(lambda _kv: _kv[0].startswith("HTTP_"), environ.items())
+    request_headers = {key[5:]: value for key, value in environ_headers}
+    return request_headers
