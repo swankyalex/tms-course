@@ -8,6 +8,7 @@ from framework.utils import get_form_data
 from framework.utils import get_request_headers
 from framework.utils import get_user_id
 from handlers.handle_error import make_error
+from handlers.handle_hello import handle_delete
 from handlers.handle_hello import hello
 from handlers.handle_image import handle_image
 from handlers.handle_index import handle_index
@@ -20,6 +21,7 @@ handlers = {
     "/": handle_index,
     "/e/": make_error,
     "/h/": hello,
+    "/d/": handle_delete,
 }
 
 
