@@ -57,3 +57,10 @@ def _load_all_users() -> Dict:
 def _store_all_users(users: Dict) -> None:
     with USERS_STORAGE.open("w") as fp:
         json.dump(users or {}, fp, sort_keys=True, indent=2)
+
+
+def delete_user(user: UserT):
+    user.fix()
+    all_users = _load_all_users()
+    all_users.pop(user.id, None)
+    _store_all_users(all_users)
