@@ -29,7 +29,7 @@ def handle_hello_get(request: RequestT) -> ResponseT:
     hello_html = read_static("hello.html").decode()
 
     result = hello_html.format(
-        address_header=request.user.address or "грёз",
+        address_header=request.user.address or " ",
         address_value=request.user.address or "",
         name_header=request.user.name or "бродяга",
         name_value=request.user.name or "",
