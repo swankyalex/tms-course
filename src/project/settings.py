@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-from dynaconf import settings as _ds
 from pathlib import Path
+
+from dynaconf import settings as _ds
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +25,11 @@ SECRET_KEY = _ds.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = _ds.MODE_DEBUG
 
-ALLOWED_HOSTS = ['127.0.0.1',
-                 'localhost',
-                 _ds.HOST,
-                 ]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    _ds.HOST,
+]
 
 # Application definition
 
