@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Z37</title>
+  <meta charset="utf-8">
+  <link href="{% static 'styles/styles.css' %}" rel="stylesheet"/>
+  <link href="{% static 'images/logo.png' %}" rel="shortcut icon" type="image/png"/>
+
+</head>
+<body>
+    <div class="flat">
+    <a href="/"><img alt="Logo" height="100rem" src="{% static 'images/logo.png' %}"></a>
+    </div>
+<main>
+{% block main %} {% endblock %}
+</main>
+<header>
+
+</header>
+</body>
+</html>

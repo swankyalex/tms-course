@@ -19,13 +19,13 @@ test:
 .PHONY: run
 run:
 	$(call log, starting local web server)
-	$(PYTHON) -m app
+	$(PYTHON) src/manage.py runserver
 
 
 .PHONY: run-prod
 run-prod:
 	$(call log, starting local web server)
-	$(RUN) gunicorn --config="$(DIR_SCRIPTS)/gunicorn.conf.py" framework.wsgi:application
+	$(RUN) gunicorn --config="$(DIR_SCRIPTS)/gunicorn.conf.py" project.wsgi:application
 
 
 .PHONY: sh
@@ -65,7 +65,7 @@ data: static
 .PHONY: static
 static:
 	$(call log, collecting static)
-
+	$(PYTHON) src/manage.py collectstatic --noinput
 
 .PHONY: resetdb
 resetdb:  dropdb createdb migrations migrate
