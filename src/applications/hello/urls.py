@@ -1,6 +1,8 @@
 from django.urls import path
 
-from applications.hello.views import hello, hello_greet, hello_reset
+from applications.hello.views import hello
+from applications.hello.views import hello_greet
+from applications.hello.views import hello_reset
 
 urlpatterns = [
     path("", hello),
