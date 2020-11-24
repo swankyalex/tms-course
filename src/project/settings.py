@@ -18,7 +18,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     _ds.HOST,
-    ]
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "applications.landing.apps.LandingConfig",
-    "applications.hello.apps.HelloConfig"
+    "applications.hello.apps.HelloConfig",
 ]
 
 MIDDLEWARE = [
