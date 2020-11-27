@@ -41,3 +41,4 @@ ci:
 heroku:
   MODE_DEBUG: false
   HOST: "swankyaleks.herokuapp.com"
+  VENV_SYNTHETIC: true
