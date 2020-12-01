@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "applications.landing.apps.LandingConfig",
     "applications.hello.apps.HelloConfig",
+    "applications.blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [

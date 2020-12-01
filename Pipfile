@@ -22,6 +22,7 @@ atomicwrites = "*"
 django = "*"
 whitenoise = "*"
 dj-database-url = "*"
+delorean = "*"
 
 [requires]
 python_version = "3.8"
