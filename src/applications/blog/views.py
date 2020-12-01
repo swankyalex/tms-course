@@ -26,3 +26,8 @@ def new_post_view(request):
     post.save()
 
     return redirect("/b")
+
+
+def blog_reset(request: HttpRequest) -> HttpResponse:
+    Post.objects.all().delete()
+    return redirect("/b/")

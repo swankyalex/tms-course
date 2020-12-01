@@ -17,6 +17,13 @@
    <p>{% csrf_token %}</p>
 </form>
 
+<form method="post" action="/b/reset/">
+  <p>
+  <button type="submit">Reset</button>
+  </p>
+  <p>{% csrf_token %}</p>
+    </form>
+
 
 {% for post in object_list %}
  <article>
