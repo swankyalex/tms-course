@@ -1,33 +1,16 @@
-from django.http import HttpRequest
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.views.generic import CreateView
+from django.views.generic import ListView
 
 from applications.blog.models import Post
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    context = {
-        "object_list": Post.objects.all(),
-    }
-    result = render(request, "blog/blog.html", context=context)
-
-    return HttpResponse(result)
+class AllPostsView(ListView):
+    template_name = "blog/blog.html"
+    model = Post
 
 
-def new_post_view(request):
-    title = request.POST["title"]
-    content = request.POST["content"]
+class NewPostView(CreateView):
+    model = Post
+    fields = ["title", "content"]
+    success_url = "/b/"
 
-    post = Post(
-        title=title,
-        content=content,
-    )
-    post.save()
-
-    return redirect("/b")
-
-
-def blog_reset(request: HttpRequest) -> HttpResponse:
-    Post.objects.all().delete()
-    return redirect("/b/")

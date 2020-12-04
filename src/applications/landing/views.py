@@ -1,9 +1,8 @@
-from django.http import HttpRequest
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    result = render(request, "landing/index.html")
+class IndexView(TemplateView):
+    template_name = "landing/index.html"
 
-    return HttpResponse(result)
+

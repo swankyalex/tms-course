@@ -1,25 +1,19 @@
 {% extends "_base.html" %}
 
 {% block main %}
-<h2>Привет, {{ name_header }}</h2>
-<p>Ты живёшь в городе {{ address_header }}</p>
+  <h2 id="greeting_display_id">Hello {{ name }}</h2>
+  <p id="address_display_id">You are in {{ address }}</p>
 
-<form method="post" action="/h/greet/">
-  <p>
-  <label for="name_id">Name:</label>
-  <input id="name_id" name="name" placeholder="What is your name?" type="text" value="{{ name_value }}">
-  <label for="name_id">Address:</label>
-  <input id="address_id" name="address" placeholder="What is your city?" type="text" value="{{ address_value }}">
-  <button>Send</button>
-  </p>
-  <p>{% csrf_token %}</p>
-  <p><a href="/">Стартовая страница</a></p>
-</form>
+  <form action="/h/" method="post">
+    {{ form.as_p }}
+    <p>
+      <button id="submit_id" type="submit">Send</button>
+    </p>
+    {% csrf_token %}
+  </form>
 
-<form method="post" action="/h/reset/">
-  <p>
-  <button type="submit">Reset</button>
-  </p>
-  <p>{% csrf_token %}</p>
-    </form>
+  <form action="/h/reset/" method="post">
+    <button id="reset_id" type="submit">Reset</button>
+    {% csrf_token %}
+  </form>
 {% endblock %}
