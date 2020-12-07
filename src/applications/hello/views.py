@@ -21,8 +21,8 @@ class HelloView(FormView):
 
         context.update(
             {
-                "address": address or "nowhere",
-                "name": name or "anonymous",
+                "address": address or " ",
+                "name": name or "Бродяга",
             }
         )
 
@@ -40,4 +40,3 @@ class HelloResetView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         self.request.session.clear()
         return "/h/"
-
