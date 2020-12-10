@@ -1,3 +1,7 @@
+{% extends "_base.html" %}
+
+{% block main %}
+
 <form method="post" action="/b/new/" class="post-form">
   {% csrf_token %}
   <div class="post-form-fields">
@@ -8,3 +12,5 @@
     <button type="submit">{{ form_action_name }}</button>
   </div>
 </form>
+
+{% endblock %}

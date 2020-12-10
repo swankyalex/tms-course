@@ -1,12 +1,17 @@
 {% extends "_base.html" %}
 
 {% block main %}
-  <h1>Create new post</h1>
+<form method="post" action="/b/">
+   <p>
+    <label for="id_title">Title</label>
+    <input id="id_title" type="text" name="title">
+   </p>
+       <p>
+    <label for="id_content">Content</label>
+    <input id="id_content" type="text" name="content">
+   </p>
+      <button>Send</button>
+   <p>{% csrf_token %}</p>
+</form>
 
-  <form method="post" action="/b/new/" class="post-form">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Tell</button>
-
-  </form>
 {% endblock %}
