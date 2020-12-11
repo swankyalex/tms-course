@@ -12,6 +12,10 @@
     <div class="flat">
     <a href="/"><img alt="Logo" height="100rem" src="{% static 'images/logo.png' %}"></a>
     </div>
+    {% if not user.is_anonymous %}
+    <p>{{user.email}}</p>
+    <p>Привет, {{user.username}}</p>
+    {% endif %}
 <main>
 {% block main %} {% endblock %}
 </main>

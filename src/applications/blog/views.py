@@ -1,6 +1,9 @@
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import CreateView
+from django.views.generic import DeleteView
+from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import RedirectView
+from django.views.generic import UpdateView
 
 from applications.blog.models import Post
 
@@ -15,6 +18,12 @@ class NewPostView(CreateView):
     fields = ["title", "content"]
     success_url = "/b/"
 
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = self.request.user
+
+        return super().form_valid(form)
+
 
 class WipeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -23,15 +32,18 @@ class WipeView(RedirectView):
 
 
 class SinglePostView(DetailView):
-    template_name = "blog/post.html"
     model = Post
+    template_name = "blog/post_form.html"
 
 
 class UpdatePostView(UpdateView):
-    template_name = "blog/post_edit.html"
     model = Post
+    template_name = "blog/post_edit.html"
     fields = ["title", "content"]
-    success_url = "/b/"
+
+    def form_valid(self, form):
+        self.object.edited = True
+        return super().form_valid(form)
 
 
 class DeletePostView(DeleteView):

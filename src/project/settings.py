@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from django.urls import reverse_lazy
 from dynaconf import settings as _ds
 
 _this_file = Path(__file__).resolve()
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     "applications.landing.apps.LandingConfig",
     "applications.hello.apps.HelloConfig",
     "applications.blog.apps.BlogConfig",
+    "applications.onboarding.apps.OnboardingConfig",
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+if DEBUG:
+    AUTH_PASSWORD_VALIDATORS = []
+
+LOGIN_URL = reverse_lazy("onboarding:sign-in")
+LOGIN_REDIRECT_URL = reverse_lazy("landing:index")
 
 LANGUAGE_CODE = "en-us"
 

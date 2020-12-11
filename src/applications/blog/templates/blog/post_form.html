@@ -1,17 +1,10 @@
-{% extends "_base.html" %}
+{% extends '_base.html' %}
 
-{% block main %}
-<form method="post" action="/b/">
-   <p>
-    <label for="id_title">Title</label>
-    <input id="id_title" type="text" name="title">
-   </p>
-       <p>
-    <label for="id_content">Content</label>
-    <input id="id_content" type="text" name="content">
-   </p>
-      <button>Send</button>
-   <p>{% csrf_token %}</p>
-</form>
+{% block content %}
+  <div class='post-entry'>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+  </div>
 
-{% endblock %}
+  <a href='{% url 'post_edit' post.pk %}'>+ Edit Blog Post</a>
+{% endblock content %}
