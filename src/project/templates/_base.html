@@ -8,14 +8,30 @@
   <link href="{% static 'images/logo.png' %}" rel="shortcut icon" type="image/png"/>
 
 </head>
+
 <body>
+
     <div class="flat">
-    <a href="/"><img alt="Logo" height="100rem" src="{% static 'images/logo.png' %}"></a>
+    <a href="/"><img alt="Logo" height="75rem" src="{% static 'images/logo.png' %}"></a>
     </div>
+           <nav>
+    <p><a href="/">Стартовая страница</a>
+   <a href="/h">Hello app</a>
+        <a href="/b">Блог</a>
+               {% if not user.is_anonymous %}
+        <a href="/o/sign-out">Выйти</a>
+               {% endif %}
+               {% if user.is_anonymous %}
+        <a href="/o/sign-in">Войти</a>
+        <a href="/o/sign-up">Регистрация</a>
+               {% endif %}
+    </p> </nav>
+
     {% if not user.is_anonymous %}
-    <p>{{user.email}}</p>
     <p>Привет, {{user.username}}</p>
     {% endif %}
+  <hr>
+
 <main>
 {% block main %} {% endblock %}
 </main>

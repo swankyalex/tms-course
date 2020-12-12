@@ -1,15 +1,15 @@
 {% extends "_base.html" %}
-{% block main %}
-  <h1>/b/{{ object.pk }}</h1>
-  <article class="post" id="post_{{ object.pk }}">
-    <span class="date">{{ object.created_at }}</span>
-    <span class="content">{{ object.content }}</span>
-    <span class="views">{% if object.edited %}✏️&nbsp;{% endif %}👁&nbsp;{{ object.nr_views }}</span>
-    <span class="likes" id="post_likes_{{ object.pk }}" onclick="like(this)">{{ object.nr_likes }}</span>
-  </article>
 
-     <form method="post" action="/b/post/{{post.pk}}/delete/">
-  <p><button type="submit">Delete</button></p>
-    <p>{% csrf_token %}</p>
-    </form>
+{% block title %}/b/{{ object.pk }}{% endblock %}
+
+{% block main %}
+
+  {% include "blog/forms/post_article.html" %}
+
+  {% with "Update" as form_action_name %}
+    {% with object.get_absolute_url as form_action_url %}
+      {% include "blog/forms/post_form.html" %}
+    {% endwith %}
+  {% endwith %}
+
 {% endblock %}
