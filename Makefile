@@ -67,6 +67,12 @@ static:
 	$(call log, collecting static)
 	$(PYTHON) src/manage.py collectstatic --noinput
 
+
+.PHONY: su
+su:
+	$(call log, starting Python shell)
+	$(PYTHON) src/manage.py createsuperuser
+
 .PHONY: resetdb
 resetdb:  dropdb createdb migrations migrate
 	$(call log, resetting db to initial state)

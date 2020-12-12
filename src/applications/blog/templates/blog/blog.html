@@ -4,6 +4,7 @@
 
  <h1>All posts</h1>
 
+{% if not user.is_anonymous %}
 <form method="post" action="/b/new/">
    <p>
     <label for="id_title">Title</label>
@@ -16,22 +17,37 @@
       <button>Send</button>
    <p>{% csrf_token %}</p>
 </form>
+{% endif %}
 
+{% if user.is_superuser %}
 <form method="post" action="/b/reset/">
   <p>
   <button type="submit">Reset</button>
   </p>
   <p>{% csrf_token %}</p>
     </form>
-
+{% endif %}
 
 {% for post in object_list %}
  <article>
    <h2>{{post.title}}</h2>
    <p>{{post.content}}</p>
    <p>{{post.created_at}}</p>
-   <p>Likes {{post.nr_likes}}</p>
+   <p>Likes 💛 {{post.nr_likes}}</p>
+     <p>{{post.author.email}}</p>
+      {% if user.is_superuser or post.author == user %}
+     <form method="post" action="/b/post/{{post.pk}}/delete/">
+  <p><button type="submit">Delete</button></p>
+    <p>{% csrf_token %}</p>
+    </form>
+
+     <form method="post" action="/b/post/{{post.pk}}/">
+  <p><button type="submit">Update</button></p>
+    <p>{% csrf_token %}</p>
+    </form>
  </article>
+{% endif %}
 {% endfor %}
+
 <p><a href="/">Стартовая страница</a></p>
 {% endblock %}

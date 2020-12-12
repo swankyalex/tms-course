@@ -1,0 +1,16 @@
+<article class="post">
+
+  {% if user.is_superuser or object.author == user %}
+    <form class="delete" method="post" action="{% url 'blog:post_delete' pk=object.pk %}">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+  {% endif %}
+
+  <a href="{{ object.get_absolute_url }}" class="date">
+       {{ object.created_at }}
+    <br>
+  </a>
+
+
+</article>

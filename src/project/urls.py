@@ -7,4 +7,5 @@ urlpatterns = [
     path("", include("applications.landing.urls")),
     path("h/", include("applications.hello.urls")),
     path("b/", include("applications.blog.urls")),
+    path("o/", include("applications.onboarding.urls")),
 ]
