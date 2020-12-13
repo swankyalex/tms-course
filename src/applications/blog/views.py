@@ -51,7 +51,8 @@ class WipeView(RedirectView):
 class PostView(UpdateView):
     model = Post
     template_name = "blog/post.html"
-    fields = ["title", "content"]
+    form_class = PostForm
+    success_url = reverse_lazy("blog:main")
 
     def form_valid(self, form):
         self.object.edited = True

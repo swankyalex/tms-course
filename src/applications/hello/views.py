@@ -1,4 +1,5 @@
 from django import forms
+from django.urls import reverse_lazy
 from django.views.generic import FormView
 from django.views.generic import RedirectView
 
@@ -10,7 +11,7 @@ class HelloForm(forms.Form):
 
 class HelloView(FormView):
     form_class = HelloForm
-    success_url = "/h/"
+    success_url = reverse_lazy("hello:main")
     template_name = "hello/hello.html"
 
     def get_context_data(self, **kwargs):
@@ -39,4 +40,4 @@ class HelloView(FormView):
 class HelloResetView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         self.request.session.clear()
-        return "/h/"
+        return reverse_lazy("hello:main")

@@ -4,7 +4,7 @@
   <h2 id="greeting_display_id">Привет,  {{ name }}</h2>
   <p id="address_display_id">Ты в  {{ address }}</p>
 
-  <form action="/h/" method="post">
+  <form action="{% url 'hello:main' %}" method="post">
     {{ form.as_p }}
     <p>
       <button id="submit_id" type="submit">Send</button>
@@ -12,9 +12,9 @@
     {% csrf_token %}
   </form>
 
-  <form action="/h/reset/" method="post">
+  <form action="{% url 'hello:reset' %}" method="post">
     <button id="reset_id" type="submit">Reset</button>
     {% csrf_token %}
   </form>
-<p><a href="/">Стартовая страница</a></p>
+
 {% endblock %}

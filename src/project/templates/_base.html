@@ -15,17 +15,21 @@
     <a href="/"><img alt="Logo" height="75rem" src="{% static 'images/logo.png' %}"></a>
     </div>
            <nav>
-    <p><a href="/">Стартовая страница</a>
-   <a href="/h">Hello app</a>
-        <a href="/b">Блог</a>
-               {% if not user.is_anonymous %}
+              {% if not user.is_anonymous %}
+               <h2 align="left">
         <a href="/o/sign-out">Выйти</a>
+               </h2>
                {% endif %}
                {% if user.is_anonymous %}
+        <h2 align="left">
         <a href="/o/sign-in">Войти</a>
-        <a href="/o/sign-up">Регистрация</a>
+        <a href="/o/sign-up">Регистрация</a></h2>
                {% endif %}
-    </p> </nav>
+    <a href="/">Стартовая страница</a>
+   <a href="/h">Hello app</a>
+        <a href="/b">Блог</a>
+
+    </nav>
 
     {% if not user.is_anonymous %}
     <p>Привет, {{user.username}}</p>
