@@ -22,7 +22,7 @@
 {% if user.is_superuser %}
 <form method="post" action="{% url 'blog:reset_all' %}">
   <p>
-  <button type="submit">Reset</button>  
+  <button type="submit">Reset</button>
   </p>
   <p>{% csrf_token %}</p>
     </form>
@@ -34,7 +34,7 @@
    <p>{{post.content}}</p>
    <p>{{post.created_at}}</p>
    <p>Likes 💛 {{post.nr_likes}}</p>
-     <p style='font-size:25px ; font-weight:bold; font-family: Comic Sans MS'>{{post.author.username}}</p>
+     <p style='font-size:25px ; font-family: Comic Sans MS'>Author: {{post.author.username}}</p>
       {% if user.is_superuser or post.author == user %}
      <form method="post" action="{% url 'blog:post_delete' pk=post.pk %}">
   <p><button type="submit">Delete</button></p>
