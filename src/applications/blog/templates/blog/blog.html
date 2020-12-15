@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
-
+{% load static %}
 {% block main %}
-
+  <script src="{% static 'blog/scripts/blog.js' %}"></script>
  <h1>All posts</h1>
 
 {% if not user.is_anonymous %}
@@ -33,7 +33,8 @@
    <h2>{{post.title}}</h2>
    <p>{{post.content}}</p>
    <p>{{post.created_at}}</p>
-   <p>Likes 💛 {{post.nr_likes}}</p>
+   <p><span class="likes" onclick="like(this, {{ post.pk }});">  {{ post.nr_likes }}</span>  💛</p>
+
      <p style='font-size:25px ; font-family: Comic Sans MS'>Author: {{post.author.username}}</p>
       {% if user.is_superuser or post.author == user %}
      <form method="post" action="{% url 'blog:post_delete' pk=post.pk %}">

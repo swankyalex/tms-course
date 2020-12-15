@@ -4,6 +4,7 @@
 <head>
   <title>Z37</title>
   <meta charset="utf-8">
+
   <link href="{% static 'styles/styles.css' %}" rel="stylesheet"/>
   <link href="{% static 'images/logo.png' %}" rel="shortcut icon" type="image/png"/>
 
@@ -24,6 +25,11 @@
         <h2 align="left">
         <a href="/o/sign-in">Войти</a>
         <a href="/o/sign-up">Регистрация</a></h2>
+               {% endif %}
+               {% if user.is_superuser %}
+
+        <a href="/admin">Админ</a>
+
                {% endif %}
     <a href="/">Стартовая страница</a>
    <a href="/h">Hello app</a>
