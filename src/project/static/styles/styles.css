@@ -35,3 +35,17 @@ body{
   transition: 0.4s ease-in-out;
 
   }
+
+
+.likes {
+  grid-column: 9/11;
+  grid-row: 10/11;
+  user-select: none;
+}
+.not-liked::before {
+  content: "💛\00a0";
+}
+
+.liked::before {
+  content: "❤️\00a0";
+}

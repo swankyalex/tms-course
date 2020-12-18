@@ -28,21 +28,20 @@
     </form>
 {% endif %}
 
-{% for post in object_list %}
+{% for object in object_list %}
  <article>
-   <h2>{{post.title}}</h2>
-   <p>{{post.content}}</p>
-   <p>{{post.created_at}}</p>
-   <p><span class="likes" onclick="like(this, {{ post.pk }});">  {{ post.nr_likes }}</span>  💛</p>
-
-     <p style='font-size:25px ; font-family: Comic Sans MS'>Author: {{post.author.username}}</p>
-      {% if user.is_superuser or post.author == user %}
-     <form method="post" action="{% url 'blog:post_delete' pk=post.pk %}">
+   <h2>{{object.title}}</h2>
+   <p>{{object.content}}</p>
+   <p>{{object.created_at}}</p>
+   <span class="likes liked" onclick="like(this, '{{ object.get_absolute_url }}');">{{ object.nr_likes }}</span>
+   <p style='font-size:25px ; font-family: Comic Sans MS'>Author: {{object.author.username}}</p>
+      {% if user.is_superuser or object.author == user %}
+     <form method="post" action="{% url 'blog:post_delete' pk=object.pk %}">
   <p><button type="submit">Delete</button></p>
     <p>{% csrf_token %}</p>
     </form>
 
-     <form action="{% url 'blog:post' pk=post.pk %}">
+     <form action="{% url 'blog:post' pk=object.pk %}">
   <p><button type="submit">Update</button></p>
     <p>{% csrf_token %}</p>
     </form>

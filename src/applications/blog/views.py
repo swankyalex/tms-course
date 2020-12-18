@@ -1,5 +1,5 @@
 from django import forms
-from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views import View
@@ -67,19 +67,26 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy("blog:main")
 
 
-class LikeView(View):
+class LikeView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        user = self.request.user
         payload = {"ok": False, "nr_likes": 0, "reason": "unknown reason"}
 
         pk = self.kwargs.get("pk", 0)
         post = Post.objects.filter(pk=pk).first()
-        if post:
-            post.nr_likes += 1
-            post.save()
-            post = Post.objects.get(pk=pk)
 
-            payload.update({"ok": True, "nr_likes": post.nr_likes, "reason": None})
-        else:
+        if not post:
             payload.update({"reason": "post not found"})
+        elif post.author == self.request.user:
+            payload.update({"reason": "ne laikai svoi posty"})
+        else:
+            if post.is_liked_by(user):
+                post.likers.remove(user)
+            else:
+                post.likers.add(user)
+            post.save()
+
+            post = Post.objects.get(pk=pk)
+            payload.update({"ok": True, "nr_likes": post.nr_likes, "reason": None})
 
         return JsonResponse(payload)
