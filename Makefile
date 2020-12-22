@@ -27,11 +27,16 @@ run-api:
 	$(call log, starting local FastAPI server)
 	$(RUN) uvicorn --port 8888 project.asgi:application
 
-
 .PHONY: run-prod
 run-prod:
 	$(call log, starting local web server)
-	$(RUN) gunicorn --config="$(DIR_SCRIPTS)/gunicorn.conf.py" project.asgi:application
+	$(RUN) uvicorn --port 8888 project.asgi:application
+
+
+#.PHONY: run-prod
+#run-prod:
+#	$(call log, starting local web server)
+#	$(RUN) gunicorn --config="$(DIR_SCRIPTS)/gunicorn.conf.py" project.asgi:application
 
 
 .PHONY: sh
