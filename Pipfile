@@ -23,6 +23,9 @@ django = "*"
 whitenoise = "*"
 dj-database-url = "*"
 delorean = "*"
+fastapi = "*"
+uvicorn = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.8"
